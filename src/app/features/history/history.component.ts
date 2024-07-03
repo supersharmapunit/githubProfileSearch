@@ -33,6 +33,9 @@ import * as GithubActions from '../../store/actions/github.actions';
     </table>
   `,
   styles: [`
+    h2 {
+      text-align: center;
+    }
     table {
       width: 100%;
     }
