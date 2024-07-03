@@ -26,9 +26,9 @@ This project is an Angular-based web application that allows users to search for
 
 ### Installation
 
-1. Clone the repository: <https://github.com/your-username/github-user-explorer.git>
+1. Clone the repository: <https://github.com/supersharmapunit/githubProfileSearch.git>
 
-2. Navigate to the project directory: `cd github-user-explorer`
+2. Navigate to the project directory: `cd githubProfileSearch`
 
 3. Install the dependencies: `npm install`
 
@@ -44,6 +44,6 @@ To run the unit tests, execute: `ng test`
 
 ## Building for Production
 
-To build the project for production, run: `ng build --prod`
+To build the project for production, run: `ng build`
 
 The build artifacts will be stored in the `dist/` directory.

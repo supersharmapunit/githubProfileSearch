@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 import * as GithubActions from '../../store/actions/github.actions';
 
 @Component({
   selector: 'app-history',
   template: `
     <h2>Search History</h2>
-    <table mat-table [dataSource]="history$ | async" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="query">
         <th mat-header-cell *matHeaderCellDef>Search Query</th>
         <td mat-cell *matCellDef="let item">{{item.query}}</td>
@@ -41,11 +42,15 @@ import * as GithubActions from '../../store/actions/github.actions';
   `]
 })
 export class HistoryComponent {
-  history$: Observable<{ query: string; successful: boolean }[]>;
+  dataSource: MatTableDataSource<{ query: string; successful: boolean }>;
   displayedColumns: string[] = ['query', 'status', 'actions'];
 
   constructor(private store: Store<any>) {
-    this.history$ = this.store.select(state => state.github.history);
+    this.dataSource = new MatTableDataSource<{ query: string; successful: boolean }>([]);
+
+    this.store.select(state => state.github.history).subscribe(data => {
+      this.dataSource.data = data;
+    });
   }
 
   clearItem(query: string) {
