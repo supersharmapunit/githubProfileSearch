@@ -1,13 +1,27 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `
+    <mat-toolbar color="primary">
+      <span>GitHub Explorer</span>
+      <a mat-button routerLink="/">Dashboard</a>
+      <a mat-button routerLink="/search">Search</a>
+      <a mat-button routerLink="/history">History</a>
+    </mat-toolbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: [`
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  `]
 })
 export class AppComponent {
-  title = 'github-explorer';
+  constructor(private router: Router) { }
 }
